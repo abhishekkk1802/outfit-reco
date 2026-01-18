@@ -6,6 +6,7 @@ services:
   - type: web
     name: outfit-reco-api
     runtime: node
+    plan: free  # Free tier
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -27,6 +28,7 @@ services:
   - type: worker
     name: outfit-reco-worker
     runtime: node
+    plan: free  # Free tier
     buildCommand: npm install
     startCommand: npm run worker
     envVars:
