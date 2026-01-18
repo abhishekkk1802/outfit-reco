@@ -47,4 +47,5 @@ services:
     name: outfit-reco-redis
     plan: free
     maxmemoryPolicy: allkeys-lru
+    ipAllowList: []  # Allow all IPs (services on Render can access it)
 
