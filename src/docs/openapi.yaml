@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: Outfit Recommendation API
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      responses:
+        "200":
+          description: OK
+  /products/{sku}:
+    get:
+      parameters:
+        - name: sku
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Product }
+        "404": { description: Not found }
+  /recommendations:
+    get:
+      parameters:
+        - name: base_sku
+          in: query
+          required: true
+          schema: { type: string }
+        - name: budget
+          in: query
+          schema: { type: number }
+        - name: occasion
+          in: query
+          schema: { type: string }
+        - name: season
+          in: query
+          schema: { type: string }
+        - name: count
+          in: query
+          schema: { type: integer, default: 5, minimum: 1, maximum: 10 }
+      responses:
+        "200":
+          description: Recommendations

@@ -1,0 +1,50 @@
+# Render Blueprint - Deploy all services with one click
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Main API Server
+  - type: web
+    name: outfit-reco-api
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: outfit-reco-redis
+          property: connectionString
+      - key: AI_PROVIDER
+        value: gemini
+      - key: GEMINI_API_KEY
+        sync: false  # You'll set this manually in dashboard
+
+  # Background Worker
+  - type: worker
+    name: outfit-reco-worker
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm run worker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: outfit-reco-redis
+          property: connectionString
+      - key: AI_PROVIDER
+        value: gemini
+      - key: GEMINI_API_KEY
+        sync: false
+
+  # Redis Database
+  - type: redis
+    name: outfit-reco-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+

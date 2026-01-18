@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Recommendation System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Product Catalog View (Initial View) -->
+    <div id="catalog-view" class="view active">
+        <header class="header">
+            <h1>Outfit Recommendation System</h1>
+            <p class="subtitle">Select a product to see outfit recommendations</p>
+        </header>
+        
+        <div class="catalog-container">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search products by name, brand, or SKU...">
+                <select id="role-filter">
+                    <option value="">All Categories</option>
+                    <option value="top">Tops</option>
+                    <option value="bottom">Bottoms</option>
+                    <option value="footwear">Footwear</option>
+                    <option value="accessory">Accessories</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div id="products-grid" class="products-grid">
+                <!-- Products will be loaded here -->
+            </div>
+            
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Loading products...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations View (After Product Selection) -->
+    <div id="recommendations-view" class="view hidden">
+        <header class="header-outfit">
+            <button id="back-btn" class="back-btn">← Back to Products</button>
+            <div class="filters-bar">
+                <input type="number" id="budget-input" placeholder="Budget (₹)">
+                <select id="season-filter">
+                    <option value="">All Seasons</option>
+                    <option value="winter">Winter</option>
+                    <option value="summer">Summer</option>
+                    <option value="spring">Spring</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="monsoon">Monsoon</option>
+                </select>
+                <select id="occasion-filter">
+                    <option value="">All Occasions</option>
+                    <option value="casual">Casual</option>
+                    <option value="formal">Formal</option>
+                    <option value="party">Party</option>
+                    <option value="office">Office</option>
+                    <option value="wedding">Wedding</option>
+                </select>
+                <button id="get-recommendations-btn" class="primary-btn">Get Recommendations</button>
+            </div>
+        </header>
+
+        <div class="recommendations-container">
+            <div class="selected-product-section">
+                <h2>Outfit Recommendations</h2>
+                <div id="base-product-info" class="base-product-info">
+                    <!-- Base product info will be shown here -->
+                </div>
+            </div>
+
+            <div id="outfit-loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Generating outfit recommendations...</p>
+            </div>
+
+            <div id="outfits-grid" class="outfits-grid">
+                <!-- All outfit recommendations will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
